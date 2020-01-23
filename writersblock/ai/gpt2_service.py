@@ -22,7 +22,6 @@ def run_gpt2_service(
     seed=None,
     nsamples=1,
     batch_size=1,
-    length=None,
     temperature=1,
     top_k=40,
     top_p=1,
@@ -35,8 +34,6 @@ def run_gpt2_service(
      results
     :nsamples=1 : Number of samples to return total
     :batch_size=1 : Number of batches (only affects speed/memory).  Must divide nsamples.
-    :length=None : Number of tokens in generated text, if None (default), is
-     determined by model hyperparameters
     :temperature=1 : Float value controlling randomness in boltzmann
      distribution. Lower temperature results in less random completions. As the
      temperature approaches zero, the model will become deterministic and
@@ -60,14 +57,9 @@ def run_gpt2_service(
     with open(os.path.join(MODELS_DIR, model_name, "hparams.json")) as f:
         hparams.override_from_dict(json.load(f))
 
-    if length is None:
-        length = hparams.n_ctx // 2
-    elif length > hparams.n_ctx:
-        raise ValueError(
-            "Can't get samples longer than window size: %s" % hparams.n_ctx
-        )
+    length = hparams.n_ctx // 2
 
-    print("Starting up model")
+    print(" * Starting up model")
 
     with tf.Session(graph=tf.Graph()) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
@@ -93,6 +85,7 @@ def run_gpt2_service(
 
             queue_len = get_queue_len()
             if queue_len > 0:
+                print(" * Jobs found, starting new batch")
                 # Grab job from queue and run it through GPT-2,
                 # finally storing it in the continuations hash.
                 prompt = dequeue()

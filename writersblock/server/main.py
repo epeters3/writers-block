@@ -19,13 +19,25 @@ def append_to_sequence():
 
     if "text" not in req_data or not isinstance(req_data["text"], str):
         return (
-            {"result": "Request must have a 'text' attribute of type string."},
+            jsonify({"result": "Request must have a 'text' attribute of type string."}),
             400,
         )
 
+    prompt = req_data["text"]
+    if len(prompt) == 0:
+        return (
+            jsonify({"result": "Your text must not be empty."}),
+            400,
+        )
+
+    # If the continuation for this prompt is already stored in the
+    # database, we don't need to add it to the queue.
+    result = get_continuation(prompt)
+    if result is not None:
+        return jsonify({"result": result})
+
     # Put request in redis server then listen
     # for a response
-    prompt = req_data["text"]
     enqueue(prompt)
     while True:
         # Listen until the continuation is available
