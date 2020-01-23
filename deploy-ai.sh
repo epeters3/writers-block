@@ -13,4 +13,4 @@ python3 download_model.py 117M
 cd ../../..
 
 # Run the GPT-2 listening process
-python3 writersblock/ai/main.py
+python3 -m writersblock.ai.main

@@ -3,7 +3,9 @@ import redis
 REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 
-db = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=0)
+db = redis.Redis(
+    host=REDIS_HOST, port=REDIS_PORT, charset="utf-8", decode_responses=True
+)
 
 QUEUE_NAME = "sequence_queue"
 HASH_NAME = "sequence_hash"
@@ -14,7 +16,7 @@ def enqueue(prompt: str) -> bool:
     Add a prompt to the queue for GPT-2 to grab
     and continue.
     """
-    return db.lpush(QUEUE_NAME, text)
+    return db.lpush(QUEUE_NAME, prompt)
 
 
 def dequeue() -> str:

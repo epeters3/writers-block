@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    body {
+      font-family: arial;
+      display: flex;
+      justify-content: center;
+      background-color: lightgray;
+    }
+    main {
+      max-width: 600px;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    pre {
+      background-color: whitesmoke;
+      border-radius: 0.25rem;
+      padding: 0.25rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    code {
+      background-color: whitesmoke;
+      border-radius: 0.25rem;
+      padding: 0.25rem;
+    }
+  </style>
+  <body>
+    <main>
+      <h1>Welcome to Writer's Block!</h1>
+      <p>
+        Send a POST request to the <code>/append-to-sequence</code> endpoint
+        containing a text prompt in the body to see what GPT2 will add to it!
+      </p>
+      <p>
+        The request should be formatted like this:
+      </p>
+      <pre>
+{
+    "text": "Once upon a time, in a land far away"
+}
+    </pre
+      >
+      <p>
+        GPT-2 will add to the story for you, eventually returning a something
+        like (this is an actual result):
+      </p>
+      <pre>
+{
+    "result": "...\n\nThe king's brother, the young man whom the king had always feared, had already slain him, without any warning. That man, in order to escape from the jaws of death, had been forced to commit an unnatural deed; he was taken away by the king, and put upon their sword, and put to flight. But it seemed to him that no one could save him, and that he should be brought down from heaven into the depths of the earth. The king, seeing the man whom he had slain, had set his hands on him. But in the way the king and his mother said, \"The child is going on to get ready to attack the king, with no warning; what a tragedy he must be! That child, I suppose, will be called a monster now, a monstrous creature.\" And on that account, the King was carried away to the sea. And when the king had arrived at the land, he returned on foot, and went, with his sword hanging about his neck, to the place where Hefta had been buried.\n\nA man of the name of Numa (Hefta) was born about thirty to a small daughter, and had never known the name of an idol. They called her \"Mora\", and she lived in the kingdom of Man, because she believed herself to be the Goddess of Peace. She never saw the place of the idols of Man, as well as on the Earth, which were worshipped by Him. For there they worshipped various kinds of deities and idols, and some were known to belong to the same type of people. In fact, there were five idols to be found in her country:\n\nMora, that is, Shefta.\n\nDhaemon, the beautiful goddess of the sea.\n\nYogimimimu, the beautiful goddess of the air.\n\nJehovah, the divine son of the land.\n\nMordhara, the beautiful goddess of the sky.\n\nMordhara, who is called Mirrah in Aramaic, is a daughter of Numa.\n\nThere are also known to have been the Five Gods, from which, as far as has been ascertained, there are others in the various countries and tongues of Japan, as the saying goes, because of their wisdom on earth, and so the people of Japan were able to understand what the name of the five Gods was.\n\n\nChapter 4. The Five Gods (Nima)"
+}     
+      </pre>
+    </main>
+  </body>
+</html>

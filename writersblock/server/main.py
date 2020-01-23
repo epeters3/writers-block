@@ -1,6 +1,7 @@
 import time
+import os
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 
 from writersblock.db import enqueue, get_continuation
 
@@ -9,27 +10,7 @@ app = Flask("HTTP API Server")
 
 @app.route("/")
 def landing():
-    return """
-    <body>
-        <h1>Welcome to Writer's Block!</h1>
-        <p>
-            Send a POST request to the `/append-to-sequence` endpoint
-            containing a text prompt in the body to see what GPT2 will
-            add to it!
-        </p>
-        <p>
-            The request should be formatted like this:
-        </p>
-        <pre>
-        {
-            "text": "Once upon a time, in a land far away"
-        }
-        </pre>
-        <p>
-            GPT-2 will add to the story for you.
-        </p>
-   </body>
-   """
+    return send_from_directory(os.path.dirname(__file__), "index.html")
 
 
 @app.route("/append-to-sequence", methods=["POST"])
