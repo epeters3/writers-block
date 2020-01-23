@@ -20,4 +20,6 @@ cd writers-block
 bash deploy-api.sh
 ```
 
+By default, the UI corresponding to the HTTP API server should be accessible at `http://localhost:5000/`
+
 \*Make sure a Redis instance is configured and accessible inside the `writersblock.db` module. If redis and both servers are running on the same machine, this repo should theoretically work out of the box.
