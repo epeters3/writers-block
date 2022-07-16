@@ -6,24 +6,12 @@ Here is an example of GPT-2 continuing a prompt in the web app UI:
 
 ![Entering a one paragraph example story prompt and seeing GPT-2's result in the web app UI](./assets/ui-example.png)
 
-## Deploying
+## Running
 
-To deploy an AI server:
+Please ensure you have docker and docker-compose installed. Then, from the project's root directory, run:
 
-```shell
-git clone https://github.com/epeters3/writers-block.git
-cd writers-block
-bash deploy-ai.sh
+```sh
+docker-compose up --build
 ```
 
-To deploy an HTTP API server:
-
-```shell
-git clone https://github.com/epeters3/writers-block.git
-cd writers-block
-bash deploy-api.sh
-```
-
-By default, the UI corresponding to the HTTP API server should be accessible at `http://localhost:5000/`
-
-\*Make sure a Redis instance is configured and accessible inside the `writersblock.db` module. If redis and both servers are running on the same machine, this repo should theoretically work out of the box.
+This will start up the api server, a redis queue, and the language model queue worker. By default, the UI corresponding to the HTTP API server should be accessible at `http://localhost:5000/`

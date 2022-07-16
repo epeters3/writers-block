@@ -1,7 +1,8 @@
+import os
 import redis
 
-REDIS_HOST = "localhost"
-REDIS_PORT = 6379
+REDIS_HOST = os.environ["REDIS_HOST"]
+REDIS_PORT = os.environ["REDIS_PORT"]
 
 db = redis.Redis(
     host=REDIS_HOST, port=REDIS_PORT, charset="utf-8", decode_responses=True

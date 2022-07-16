@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+
+  redis:
+    image: redis
+
+  model:
+    image: model
+    build:
+      context: .
+      dockerfile: dockerfiles/model.Dockerfile
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+
+  api:
+    image: api
+    build:
+      context: .
+      dockerfile: dockerfiles/api.Dockerfile
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - 5000:5000

@@ -1,3 +1,0 @@
-[submodule "writersblock/ai/gpt-2"]
-	path = writersblock/ai/gpt-2
-	url = https://github.com/openai/gpt-2.git
